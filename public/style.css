@@ -106,4 +106,7 @@ body.home{
   align-items: center;
 }
 
-
+.centerme {
+  text-align: center;
+  padding-block: 1rem;
+}
