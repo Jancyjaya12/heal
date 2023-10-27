@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>login form</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
+  <title>Home</title>
+  <%- include('_head') %>
 </head>
 <body class="login">
   <div class="wrapper">
     <form action="/signout" method="GET">
-      <h1>Welcome!</h1>
+      <% if (locals.currentHour > 12) { %>
+        <h1>Good Afternoon</h1>
+      <% } else { %>
+        <h1>Good Morning</h1>
+      <% } %>
       <p class="centerme"><%= locals.email %></p>
       <button type="submit" class="btn">Signout</button>
     </form>
