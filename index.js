@@ -55,8 +55,9 @@ app.post("/login", function (request, response) {
 })
 app.get("/dashboard", function (request, response) {
   if (request.session.loggedIn === true) {
+    const currentHour = new Date().getHours();
     // If user is already logged in, show them dashboard.
-    response.render("dashboard", { email: request.session.email })
+    response.render("dashboard", { currentHour: currentHour, email: request.session.email })
   }
   else {
     // If user is not logged in, send them back to login page.
