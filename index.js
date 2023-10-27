@@ -32,6 +32,7 @@ app.use(nocache());
 app.get("/", function (request, response) {
   // Render the login page.
   // Render = Build to HTML + Send to User
+
   if (request.session.loggedIn === true) {
     response.redirect('/dashboard');
   } else {
@@ -40,15 +41,14 @@ app.get("/", function (request, response) {
 });
 
 app.post("/login", function (request, response) {
-
   // Validate user input with credentials.
-  if (request.body.email === process.env.USERNAME && request.body.password === process.env.PASSWORD) {
+  if (request.body.email === process.env.EMAIL && request.body.password === process.env.PASSWORD) {
     // Store user data in session.
     request.session.loggedIn = true;
     request.session.email = request.body.email;
     // If user has valid details, send them to /dashboard.
     response.redirect('/dashboard');
-  } else {
+  } else { 
     // If invalid details, render same login page with an error message.
     response.render("index", { error: "Invalid credentials" })
   }
