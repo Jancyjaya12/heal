@@ -40,6 +40,10 @@ app.get("/", function (request, response) {
   }
 });
 
+app.get('/login', function(request, response) {
+  response.redirect('/');
+})
+
 app.post("/login", function (request, response) {
   // Validate user input with credentials.
   if (request.body.email === process.env.EMAIL && request.body.password === process.env.PASSWORD) {
@@ -53,8 +57,11 @@ app.post("/login", function (request, response) {
     response.render("index", { error: "Invalid credentials" })
   }
 })
+
 app.get("/dashboard", function (request, response) {
   if (request.session.loggedIn === true) {
+    // We pass this to the dashboard.ejs to render a greeting message dynamically,
+    // according to time...
     const currentHour = new Date().getHours();
     // If user is already logged in, show them dashboard.
     response.render("dashboard", { currentHour: currentHour, email: request.session.email })
@@ -70,6 +77,13 @@ app.get("/signout", function (request, response) {
   request.session.loggedIn = false;
   request.session.email = null;
   response.redirect("/")
+});
+
+// 404 Page, Wildcard Route (Catch ALl)
+app.get("*", function(request,response){
+  // response.sendStatus(404);
+  response.status(404); // Set the status code.
+  response.send("404 Not Found");
 });
 
 // Start the server on port defined in .env.
