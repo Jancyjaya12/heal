@@ -110,3 +110,12 @@ body.home{
   text-align: center;
   padding-block: 1rem;
 }
+body.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("sunrise-1116985.jpg");
+  background-size: cover;
+  background-position: center;
+ }
