@@ -119,3 +119,13 @@ body.main {
   background-size: cover;
   background-position: center;
  }
+.wrap{
+  justify-content: center;
+}
+.mainhead{
+  color: #fff;
+  font-family: sans-serif;
+  font-size: larger;
+  font-weight: bolder;
+  
+}
