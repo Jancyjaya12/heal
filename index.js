@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const nocache = require('nocache');
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
 // Load variables from `.env` file into process.env global object.
 dotenv.config();
@@ -9,7 +10,8 @@ dotenv.config();
 // Routers
 const authRoutes = require("./routers/authRouter");
 const userRoutes = require("./routers/userRouter");
-
+// Initialize database
+// mongoose.connect("mongodb://localhost:27017/heal").then(x => console.log(x))
 // Initialize server application.
 const app = express();
 
