@@ -30,8 +30,21 @@ function getLogout(request, response) {
   response.redirect("/")
 }
 
+function getRegister(request, response){
+  if(request.session.loggedIn===true){
+    response.redirect("/dashboard")
+  }
+  else{
+    response.render("register")
+  }
+  
+}
+
+
+
 module.exports = { 
   getLogin, 
   postLogin,
-  getLogout
+  getLogout,
+  getRegister
 }
