@@ -10,8 +10,18 @@ dotenv.config();
 // Routers
 const authRoutes = require("./routers/authRouter");
 const userRoutes = require("./routers/userRouter");
+
 // Initialize database
-// mongoose.connect("mongodb://localhost:27017/heal").then(x => console.log(x))
+mongoose.connect("mongodb://localhost:27017/heal")
+.then(() => {
+  console.log("🍃  Mongoose connected with MongoDB successfully.")
+})
+.catch(err => {
+  console.log("❌ Mongoose could not establish a connection with MongoDB")
+  console.error(err);
+  process.exit(1);
+});
+
 // Initialize server application.
 const app = express();
 
