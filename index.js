@@ -11,6 +11,9 @@ dotenv.config();
 const authRoutes = require("./routers/authRouter");
 const userRoutes = require("./routers/userRouter");
 
+//mongoose
+const User = require("./models/User");
+
 // Initialize database
 mongoose.connect("mongodb://localhost:27017/heal")
 .then(() => {
@@ -21,6 +24,8 @@ mongoose.connect("mongodb://localhost:27017/heal")
   console.error(err);
   process.exit(1);
 });
+
+
 
 // Initialize server application.
 const app = express();

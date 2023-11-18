@@ -1,20 +1,20 @@
-
-
 * {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
- font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* style to Login page */
+
 body.login {
- display: flex;
- justify-content: center;
- align-items: center;
- min-height: 100vh;
- background: url("lav.jpg");
- background-size: cover;
- background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("lav.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .wrapper {
@@ -24,17 +24,20 @@ body.login {
   border-radius: 10px;
   padding: 30px 40px;
 }
-.wrapper h1{
+
+.wrapper h1 {
   font-size: 36px;
   text-align: center;
 }
-.wrapper .input-box{
- width: 100%;
- height: 50px;
- background: purple;
- margin: 30px 0;
+
+.wrapper .input-box {
+  width: 100%;
+  height: 50px;
+  background: purple;
+  margin: 30px 0;
 }
-.input-box input{
+
+.input-box input {
   width: 100%;
   height: 100%;
   background: transparent;
@@ -45,9 +48,11 @@ body.login {
   color: white;
   padding: 20px 45px 20px 20px;
 }
-.input-box input::placeholder{
+
+.input-box input::placeholder {
   color: whitesmoke;
 }
+
 .wrapper .remember-forgot {
   display: flex;
   justify-content: space-between;
@@ -55,7 +60,7 @@ body.login {
   margin: -15px 0 15px;
 }
 
-.remember-forgot label input{
+.remember-forgot label input {
   accent-color: white;
   margin-right: 3px;
 }
@@ -66,11 +71,11 @@ body.login {
 
 }
 
-.remember-forgot a:hover{
+.remember-forgot a:hover {
   text-decoration: underline;
 }
 
-.wrapper .btn{
+.wrapper .btn {
   width: 100%;
   height: 45px;
   background: #fff;
@@ -85,51 +90,91 @@ body.login {
 }
 
 .wrapper .register-link {
-  font-size: 14,5px;
+  font-size: 14, 5px;
   text-align: center;
   margin: 20px 0 15px;
 }
-.register-link p a{
+
+.register-link p a {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
 }
 
-.register-link p a:hover{
+.register-link p a:hover {
   text-decoration: underline;
 }
 
-body.home{
-  background: url(home1.jpg) no-repeat; 
-  background-size: cover;
-  background-position: center;
-  align-items: center;
-}
-
-.centerme {
-  text-align: center;
-  padding-block: 1rem;
-}
-/* body.main {
+/* dashBoard */
+body.dashboard {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("sunrise-1116985.jpg");
+  background: url("6918919-bunch-lavender.jpg");
   background-size: cover;
   background-position: center;
- }
-.wrap{
-  justify-content: center;
 }
-.mainhead{
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  font-size: 50pt;
-  font-style: oblique;
-  
+
+.wrapper {
+  width: 420px;
+  background: purple;
+  color: whitesmoke;
+  border-radius: 10px;
+  padding: 30px 40px;
 }
-wrap.log{
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.wrapper .input-box {
+  width: 100%;
+  height: 50px;
+  background: purple;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border: 2px solid rgb(255, 255, 255, .2);
+  border-radius: 40px;
+  font-size: 18px;
+  color: white;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: whitesmoke;
+}
+
+.wrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+  accent-color: white;
+  margin-right: 3px;
+}
+
+.remember-forgot a {
+  color: aliceblue;
+  text-decoration: none;
+
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.wrapper .btn {
   width: 100%;
   height: 45px;
   background: #fff;
@@ -142,48 +187,71 @@ wrap.log{
   color: #333;
   font-weight: 600;
 }
-.nav{
-  position: absolute;
-  top: 10px;
-  
-} */
-body.home-main{
+
+.wrapper .register-link {
+  font-size: 14, 5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.register-link p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+}
+
+
+/* home page */
+
+body.home-main {
   display: flex;
   justify-content: center;
+  background-image: url("https://source.unsplash.com/collection/317099/1920x1080");
   align-items: center;
-  background-image: url(DSC04162-scaled.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
+  margin: 0; 
 }
+
+.header h1 {
+  font-family:  'Montserrat', sans-serif; 
+  font-weight: 700; 
+  color: #fff;
+  font-size: 50px; 
+  text-shadow: 2px 2px 5px black; 
+}
+
+
 .container {
   text-align: center;
-  margin-bottom: 50px;
+  margin: auto;
+  margin-top: 50px; 
+}
 
+.header h1 {
+  font-weight: 600;
+  color: #fff;
+  font-size: 36px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+  margin-top:100px;
 }
-.header h1{
-    font-weight: 400;
-    color: #fff;
-}
-.main-content{
-  width: 100%;
-  height: 300px;
-  padding: 50px 40px;
-  background-color: antiquewhite;
-  border-radius: 15px;
-  background: transparent;
-  
-  box-shadow: 0 25px 31px rgba(0, 0, 0, 0.5);
-}
-.text-area{
+
+
+.text-area {
   text-align: center;
   font-size: 30px;
-  color:whitesmoke;
+  color: whitesmoke;
   line-height: 1.5;
   text-shadow: 2px 2px 5px black;
- 
 }
-.writer{
+
+.writer {
   text-transform: uppercase;
   letter-spacing: 5px;
   color: red;
@@ -191,23 +259,138 @@ body.home-main{
   margin-top: 20px;
   font-size: 15px;
   text-shadow: 2px 2px 5px red;
+    margin-top: 30px;
 }
-.button-area{
-  display: grid;
-  place-items: center;
-  margin-top: 20px;
-  padding: 10px 0;
-}
-.btn button{
-  background-color: #262626;
+
+
+#Qbtn {
+  background-color: #e74c3c; 
   color: #fff;
-  border-radius: 5px;
-  font-size: 16px;
+  border: 2px solid #c0392b;
+  border-radius: 8px; 
+  font-size: 18px; 
   cursor: pointer;
-  border: none;
   outline: none;
-  padding: 12px 15px;
+  padding: 12px 20px; 
+  margin-top: 20px; 
+  transition: background-color 0.3s ease-in-out; 
+ font-family: 'Poppins', sans-serif; 
 }
-.btn button:active{
-  background-color: deepskyblue;
+
+#Qbtn:hover {
+  background-color: #d35400; 
+}
+
+#Qbtn:active {
+  background-color: #a93226; 
+}
+/* styles.css */
+.top-right-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  
+}
+
+.btn-link {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+
+#registerBtn,
+#loginBtn,
+#Qbtn {
+  background-color: #e74c3c;
+  color: #fff;
+  border: 2px solid #c0392b;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#registerBtn:hover,
+#loginBtn:hover,
+#Qbtn:hover {
+  background-color: #d35400;
+}
+
+#registerBtn:active,
+#loginBtn:active,
+#Qbtn:active {
+  background-color: #a93226;
+}
+
+  
+/* Style to registration page */
+
+.registration-body {
+  background-image: url('unnamed.jpg');
+  background-color: #e6e6fa;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+
+
+.registration-heading {
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 600px;
+  font-family: 'Georgia', serif;
+  color: #4b0082;
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+.registration-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2),
+    0 8px 16px rgba(255, 255, 255, 0.2);
+  width: 400px;
+  margin-top: 20px;
+  margin-right: 600px;
+}
+
+.registration-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.registration-input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.registration-button {
+  background-color: #4b0082;
+  color: #fff;
+  cursor: pointer;
+  padding: 15px;
+  width: 200px;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.registration-button:hover {
+  position: cente;
+  background-color: #330066;
 }

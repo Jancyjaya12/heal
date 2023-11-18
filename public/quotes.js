@@ -21685,16 +21685,28 @@ const quotes =[
     }
 ]
 
+// get random image from unsplash
+const unsplashUrl = "https://source.unsplash.com/collection/317099/1920x1080";
+
+
 let btn = document.querySelector("#Qbtn")
 let quote = document.querySelector(".quote")
 let writer = document.querySelector(".writer")
+let container = document.querySelector(".home-main");
+
 
 btn.addEventListener("click",function(){
-
+  console.log('Button clicked');
   // fetch("/randomQuote") -> { quoteAuthor, quote }
   let random = Math.floor(Math.random()*quotes.length);
 
   quote.innerHTML = quotes[random].quoteText;
   writer.innerHTML = quotes[random].quoteAuthor;
+
+  //fetch random image from unsplash
+  console.log('Image URL:', imageUrl);
+  const imageUrl = `${unsplashUrl}/800x600/?${Date.now()}`;
+  container.style.backgroundImage = `url(${imageUrl})`;
+
   
 })
