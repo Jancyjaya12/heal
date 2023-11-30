@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management Portal</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      width: min(80%, 70.5rem);
+      margin-inline: auto;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>👥 User Management Panel</h1>
+  <div class="container">
+
+    <table>
+      <tr>
+        <th>_id</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+      <% locals.users.forEach(user=> { %>
+        <tr id="<%= user._id %>">
+          <td><code><%= user._id %></code></td>
+          <td>
+            <p id="name-<%= user._id %>">
+              <%= user.name %>
+            </p>
+          </td>
+          <td>
+            <p id="username-<%= user._id %>">
+              <%= user.username %>
+            </p>
+          </td>
+          <td>
+            <p id="email-<%= user._id %>">
+              <%= user.email %>
+            </p>
+          </td>
+          <td>
+            <button class="edit-btn" data-id="<%= user._id %>">Edit</button>&nbsp;
+            <button class="delete-btn" data-id="<%= user._id %>">Delete</button>
+          </td>
+        </tr>
+        <% }) %>
+    </table>
+  </div>
+
+  <script>
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(e => {
+      e.addEventListener('click', async () => {
+        let idToDelete = e.dataset.id;
+
+        const response = await fetch(`/admin/users/${idToDelete}`, {
+          method: "DELETE"
+        });
+        if (response.ok) {
+          document.getElementById(idToDelete).remove();
+        } else {
+          alert("An error occured.");
+        }
+      })
+    })
+
+    const editButtons = document.querySelectorAll('.edit-btn');
+    let isEditing = false;
+    let isEditingId = undefined;
+    editButtons.forEach(elem => {
+      elem.addEventListener('click', () => {
+
+        // If a field is already being edited.
+        if (isEditing) {
+          if (elem.dataset.id === isEditingId) {
+            elem.innerText = "Edit";
+            let nameElement = document.getElementById('name-' + isEditingId);
+            let userElement = document.getElementById('username-' + isEditingId);
+            let emailElement = document.getElementById('email-' + isEditingId);
+
+            let data = {
+              name: nameElement.value,
+              username: userElement.value,
+              email: emailElement.value
+            }
+
+            fetch(`/admin/users/${isEditingId}`, {
+              method: "PUT",
+              body: JSON.stringify(data),
+              headers: {
+                "Content-Type": "application/json"
+              }
+            }).then(function (data) {
+              if (!data.ok) {
+                // Create an error if not found.
+                throw new Error("An internal server error occured.");
+              }
+              replaceInput(nameElement);
+              replaceInput(userElement);
+              replaceInput(emailElement);
+              isEditing = false;
+              isEditingId = undefined;
+              alert("Successfully edited.");
+            }).catch(function (error) {
+              alert("An error occured.");
+            });
+          } else {
+            alert("You are already editing a field.");
+          }
+        } else {
+          isEditing = true;
+          isEditingId = elem.dataset.id;
+          elem.innerText = "Save";
+
+          let nameElement = document.getElementById('name-' + isEditingId);
+          let userElement = document.getElementById('username-' + isEditingId);
+          let emailElement = document.getElementById('email-' + isEditingId);
+
+          // Replace the <p> tags for the user data
+          // with <input> tags for easy editing.
+          replaceText(nameElement);
+          replaceText(userElement);
+          replaceText(emailElement);
+        }
+      })
+    })
+
+    // Function to replace <p> tag with <input> tag.
+    function replaceText(element) {
+      let replacement = document.createElement('input');
+      replacement.type = "text";
+      replacement.value = element.innerText;
+      replacement.id = element.id;
+      element.replaceWith(replacement);
+    }
+
+    // Function to replace <input> tag with <p> tag.
+    function replaceInput(element) {
+      let replacement = document.createElement('p');
+      replacement.innerText = element.value;
+      replacement.id = element.id;
+      element.replaceWith(replacement);
+    }
+
+
+  </script>
+</body>
+
+</html>
