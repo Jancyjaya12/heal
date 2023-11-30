@@ -10,8 +10,9 @@ dotenv.config();
 // Routers
 const authRoutes = require("./routers/authRouter");
 const userRoutes = require("./routers/userRouter");
+const adminRoutes = require("./routers/adminRouter");
 
-//mongoose
+//User
 const User = require("./models/User");
 
 // Initialize database
@@ -36,6 +37,7 @@ app.set("view engine", "ejs")
 app.use(express.static('public'));
 // Accept all kinds of POST data from user and put it in req.body.
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // Set up session configuration
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -57,6 +59,9 @@ app.get('/', function(req, res) {
 app.use("/",authRoutes);
 // Apply user routes like /dashboard
 app.use("/",userRoutes);
+
+// Apply admin routes like /admin/dashboard
+app.use("/admin", adminRoutes);
 
 // 404 Page, Wildcard Route (Catch ALl)
 app.get("*", function(request,response){

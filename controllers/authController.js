@@ -1,3 +1,7 @@
+const bcrypt = require("bcrypt");
+const User = require("../models/User")
+
+
 function getLogin(request, response) {
   // Render the login page.
   // Render = Build to HTML + Send to User
@@ -5,21 +9,33 @@ function getLogin(request, response) {
   if (request.session.loggedIn === true) {
     response.redirect('/dashboard');
   } else {
-    response.render("login");
+    if (request.session.newlyRegistered) {
+      request.session.newlyRegistered = false;
+      response.render("login", { error: "Account was registered successfully." });
+    } else {
+      response.render("login");
+    }
   }
 }
 
-function postLogin(request, response) {
-  // Validate user input with credentials.
-  if (request.body.email === process.env.EMAIL && request.body.password === process.env.PASSWORD) {
-    // Store user data in session.
-    request.session.loggedIn = true;
-    request.session.email = request.body.email;
-    // If user has valid details, send them to /dashboard.
-    response.redirect('/dashboard');
-  } else { 
-    // If invalid details, render same login page with an error message.
+async function postLogin(request, response) {
+  const { email, password } = request.body;
+  // Find user by email.
+  const user = await User.findOne({ email });
+  if (!user) {
     response.render("login", { error: "Invalid credentials" })
+  } else {
+    // Validate user input with credentials.
+    if (await bcrypt.compare(password, user.password)) {
+      // Store user data in session.
+      request.session.loggedIn = true;
+      request.session.email = request.body.email;
+  
+      // If user has valid details, send them to /dashboard.
+      response.redirect('/dashboard');
+    } else {
+      response.render("login", { error: "Invalid credentials" })
+    }
   }
 }
 
@@ -30,21 +46,37 @@ function getLogout(request, response) {
   response.redirect("/")
 }
 
-function getRegister(request, response){
-  if(request.session.loggedIn===true){
+function getRegister(request, response) {
+  if (request.session.loggedIn === true) {
     response.redirect("/dashboard")
   }
-  else{
+  else {
     response.render("register")
   }
-  
+
 }
 
+async function postRegister(request, response) {
+  const { name, username, email, password } = request.body
 
+  // Hash the password using bcrypt
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-module.exports = { 
-  getLogin, 
+  try {
+    const user = await User.create({ name, username, email, password: hashedPassword });
+    request.session.newlyRegistered = true;
+    response.redirect('/login');
+  } catch (err) {
+    console.error(err);
+    response.send(err);
+  }
+
+}
+
+module.exports = {
+  getLogin,
   postLogin,
   getLogout,
-  getRegister
+  getRegister,
+  postRegister
 }
